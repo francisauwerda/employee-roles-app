@@ -1,0 +1,25 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "Francis",
+      "lastName": "Auwerda",
+      "department": "Engineering",
+      "nationality": "New Zealand"
+    },
+    {
+      "id": 2,
+      "firstName": "Neli",
+      "lastName": "Diakonidze",
+      "department": "University",
+      "nationality": "Georgia"
+    },
+    {
+      "id": 3,
+      "firstName": "Rocco",
+      "lastName": "Paw",
+      "department": "Bones",
+      "nationality": "Great Britain"
+    }
+  ]
+}
