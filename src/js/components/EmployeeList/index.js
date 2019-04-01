@@ -1,6 +1,7 @@
 import React from 'react';
-import employeeData from '../../employee-data.json';
-import EmployeeItem from './EmployeeItem.js';
+import employeeData from '../../../employee-data.json';
+import EmployeeItem from '../EmployeeItem';
+import './EmployeeList.css';
 
 class EmployeeList extends React.Component {
   componentDidMount() {
@@ -8,7 +9,7 @@ class EmployeeList extends React.Component {
   }
   render() {
     return (
-      <ul>
+      <ul className="list">
         {employeeData.employees.map(employee => {
           return <EmployeeItem key={employee.id} employee={employee} />
         })}
