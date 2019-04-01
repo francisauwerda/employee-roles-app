@@ -1,10 +1,10 @@
 import React from 'react';
-import EmployeeList from './EmployeeList';
+import List from './List';
 
 const App = () => (
   <div>
     <h1>Welcome</h1>
-    <EmployeeList />
+    <List />
   </div>
 );
 
