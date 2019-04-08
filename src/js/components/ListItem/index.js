@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { primary, primaryLight, primaryDark } from '../../styles';
+import { primary, primaryLight } from '../../styles';
 
 const ListItem = (props) => {
+  const { employee } = props;
+  const { firstName } = employee;
   return (
     <ListItemStyled>
-      {props.employee.firstName}
+      {firstName}
     </ListItemStyled>
   );
-}
+};
 
 const ListItemStyled = styled.li`
   background-color: ${primary};
@@ -21,5 +23,6 @@ const ListItemStyled = styled.li`
     background-color: ${primaryLight};
   }
 `;
+
 
 export default ListItem;
