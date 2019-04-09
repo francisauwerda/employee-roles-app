@@ -7,14 +7,13 @@ class List extends React.Component {
   componentDidMount() {
     // console.log(`\n---\n employeeData: ${JSON.stringify(employeeData, undefined, 2)} \n---\n`);
   }
+
   render() {
     return (
       <ul className="list">
-        {employeeData.employees.map(employee => {
-          return <ListItem key={employee.id} employee={employee} />
-        })}
+        {employeeData.employees.map(employee => <ListItem key={employee.id} employee={employee} />)}
       </ul>
-    )
+    );
   }
 }
 

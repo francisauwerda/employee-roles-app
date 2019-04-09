@@ -1,15 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { primary, primaryLight } from '../../styles';
 
 const ListItem = (props) => {
-  const { employee } = props;
-  const { firstName } = employee;
+  const { employee: { firstName } } = props;
   return (
     <ListItemStyled>
       {firstName}
     </ListItemStyled>
   );
+};
+
+ListItem.defaultProps = {
+  employee: {
+    firstName: 'Default',
+  },
+};
+
+ListItem.propTypes = {
+  employee: PropTypes.shape({
+    firstName: PropTypes.string,
+  }),
 };
 
 const ListItemStyled = styled.li`
