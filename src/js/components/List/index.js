@@ -1,7 +1,6 @@
 import React from 'react';
 import employeeData from '../../../employee-data.json';
 import ListItem from '../ListItem';
-import './List.css';
 
 class List extends React.Component {
   componentDidMount() {

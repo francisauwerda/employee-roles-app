@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { primary, primaryLight } from '../../styles';
+import { primaryLight } from '../../styles';
 
 const ListItem = (props) => {
   const { employee: { firstName } } = props;
@@ -25,7 +25,6 @@ ListItem.propTypes = {
 };
 
 const ListItemStyled = styled.li`
-  background-color: ${primary};
   margin: 15px 0;
   cursor: pointer;
   transition: background-color .5s;
