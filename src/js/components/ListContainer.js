@@ -12,7 +12,8 @@ class ListContainer extends React.Component {
 };
 
 const ListContainerStyled = styled.div`
-  margin: 30px;
+  display: flex;
+  justify-content: center;
 `;
 
 export default ListContainer;

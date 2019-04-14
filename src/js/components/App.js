@@ -4,7 +4,6 @@ import ListContainer from './ListContainer';
 
 const App = () => (
   <div>
-    <h1>Welcome</h1>
     <ListContainer>
       <List />
     </ListContainer>
