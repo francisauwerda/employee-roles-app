@@ -1,18 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import employeeData from '../../employee-data.json';
-import ListItem from './ListItem.js';
+import ListItem from './ListItem.js'; 
 
 class List extends React.Component {
-  componentDidMount() {
-    // console.log(`\n---\n employeeData: ${JSON.stringify(employeeData, undefined, 2)} \n---\n`);
+  constructor(props) {
+    super(props);
+    this.state = {
+      employees: []
+    }
+  }
+  async componentDidMount() {
+    const response = await fetch('https://employee-statistics.herokuapp.com/api/employees');
+    const jsonResponse = await response.json();
+    const { employees } = jsonResponse;
+    this.setState({ employees });
   }
 
   render() {
     return (
       <ListStyled className="list">
-        {employeeData.employees.map(employee => <ListItem key={employee.id} employee={employee} />)}
+        {this.state.employees.map(employee => <ListItem key={employee.id} employee={employee} />)}
       </ListStyled>
     );
   }
