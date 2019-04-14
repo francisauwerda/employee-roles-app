@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { primaryLight } from '../../styles';
+import { primaryLight } from '../styles';
 
 const ListItem = (props) => {
   const { employee: { firstName } } = props;

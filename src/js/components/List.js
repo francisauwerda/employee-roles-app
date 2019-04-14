@@ -1,6 +1,8 @@
 import React from 'react';
-import employeeData from '../../../employee-data.json';
-import ListItem from '../ListItem';
+import styled from 'styled-components';
+
+import employeeData from '../../employee-data.json';
+import ListItem from './ListItem.js';
 
 class List extends React.Component {
   componentDidMount() {
@@ -9,11 +11,18 @@ class List extends React.Component {
 
   render() {
     return (
-      <ul className="list">
+      <ListStyled className="list">
         {employeeData.employees.map(employee => <ListItem key={employee.id} employee={employee} />)}
-      </ul>
+      </ListStyled>
     );
   }
 }
+
+const ListStyled = styled.ul`
+  /* Reset list styles */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
 
 export default List;
