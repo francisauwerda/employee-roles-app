@@ -40,7 +40,7 @@ const Text = styled.div`
 `;
 
 Text.defaultProps = {
-  fontWeight: FONT_WEIGHTS.boldest
+  fontWeight: FONT_WEIGHTS.boldest,
 };
 
 const ListItemStyled = styled.li`
