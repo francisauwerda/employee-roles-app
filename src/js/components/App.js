@@ -1,6 +1,6 @@
 import React from 'react';
-import List from './List.js';
 import ListContainer from './ListContainer';
+import List from './List';
 
 const App = () => (
   <div>

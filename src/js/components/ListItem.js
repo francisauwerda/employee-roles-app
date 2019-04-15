@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { primaryLight } from '../styles';
 
 import avatar from '../../assets/avatar.png';
@@ -11,21 +12,31 @@ const ListItem = (props) => {
       firstName,
       lastName,
       nationality,
-      department
-    }
+      department,
+    },
   } = props;
+  const name = `${firstName} ${lastName}`;
   return (
     <ListItemStyled>
       <div className="leftAccessory">
         <AvatarStyled src={avatar} alt="avatar" />
       </div>
       <div className="content">
-        <Text fontWeight={FONT_WEIGHTS.bold}>{firstName} {lastName}</Text>
-        <Text fontWeight={FONT_WEIGHTS.normal}>{nationality}</Text>
-        <Text fontWeight={FONT_WEIGHTS.light}>{department}</Text>
+        <Text fontWeight={FONT_WEIGHTS.bolder}>{name}</Text>
+        <Text>{nationality}</Text>
+        <Text fontWeight={FONT_WEIGHTS.bold}>{department}</Text>
       </div>
     </ListItemStyled>
   );
+};
+
+ListItem.propTypes = {
+  employee: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    nationality: PropTypes.string,
+    department: PropTypes.string,
+  }).isRequired,
 };
 
 const AvatarStyled = styled.img`
@@ -36,11 +47,11 @@ const AvatarStyled = styled.img`
 `;
 
 const Text = styled.div`
-  font-weight: ${props => props.fontWeight}
+  font-weight: ${props => props.fontWeight};
 `;
 
 Text.defaultProps = {
-  fontWeight: FONT_WEIGHTS.boldest,
+  fontWeight: FONT_WEIGHTS.normal,
 };
 
 const ListItemStyled = styled.li`
@@ -56,6 +67,5 @@ const ListItemStyled = styled.li`
     background-color: ${primaryLight};
   }
 `;
-
 
 export default ListItem;

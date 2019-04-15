@@ -12,6 +12,7 @@ class List extends React.Component {
   }
 
   async componentDidMount() {
+    // eslint-disable-next-line no-undef
     const response = await fetch('https://employee-statistics.herokuapp.com/api/employees');
     const jsonResponse = await response.json();
     const { employees } = jsonResponse;
@@ -19,9 +20,10 @@ class List extends React.Component {
   }
 
   render() {
+    const { employees } = this.state;
     return (
       <ListStyled className="list">
-        {this.state.employees.map(employee => <ListItem key={employee.id} employee={employee} />)}
+        {employees.map(employee => <ListItem key={employee.id} employee={employee} />)}
       </ListStyled>
     );
   }

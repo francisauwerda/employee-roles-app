@@ -1,14 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import List from './List';
 
-class ListContainer extends React.Component {
-  render() {
-    return (
-      <ListContainerStyled>
-        {this.props.children}
-      </ListContainerStyled>
-    );
-  }
+const ListContainer = (props) => {
+  const { children } = props;
+  return (
+    <ListContainerStyled>
+      {children}
+    </ListContainerStyled>
+  );
+};
+
+ListContainer.propTypes = {
+  children: PropTypes.instanceOf(List).isRequired,
 };
 
 const ListContainerStyled = styled.div`

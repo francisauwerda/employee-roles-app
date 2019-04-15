@@ -1,4 +1,5 @@
 // Font weights
+// eslint-disable-next-line import/prefer-default-export
 export const FONT_WEIGHTS = {
   lightest: 100,
   lighter: 200,
@@ -6,5 +7,5 @@ export const FONT_WEIGHTS = {
   normal: 400,
   bold: 700,
   bolder: 800,
-  boldest: 900
-}
+  boldest: 900,
+};
