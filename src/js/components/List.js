@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import _ from 'lodash';
 
 import ListItem from './ListItem';
 
@@ -16,14 +17,18 @@ class List extends React.Component {
     const response = await fetch('https://employee-statistics.herokuapp.com/api/employees');
     const jsonResponse = await response.json();
     const { employees } = jsonResponse;
-    this.setState({ employees });
+    this.setState({
+      employees: _.sortBy(employees, ['lastName']),
+    });
   }
 
   render() {
     const { employees } = this.state;
     return (
       <ListStyled className="list">
-        {employees.map(employee => <ListItem key={employee.id} employee={employee} />)}
+        {
+          employees.map(employee => <ListItem key={employee.id} employee={employee} />)
+        }
       </ListStyled>
     );
   }
