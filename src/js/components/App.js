@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Form from './Form';
+import EmployeeForm from './EmployeeForm';
 import Container from './common/Container';
 import EmployeeList from './EmployeeList';
 
@@ -11,7 +11,7 @@ const App = () => (
         <EmployeeList />
       </Container>
       <Container>
-        <Form />
+        <EmployeeForm />
       </Container>
     </PageContainer>
   </div>
