@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import ListContainer from './ListContainer';
 import List from './List';
+import Form from './Form';
+import Container from './common/Container';
 
 const App = () => (
   <div>
     <PageContainer>
-      <ListContainer>
+      <Container>
         <List />
-      </ListContainer>
-      <div>Form</div>
+      </Container>
+      <Container>
+        <Form />
+      </Container>
     </PageContainer>
   </div>
 );
