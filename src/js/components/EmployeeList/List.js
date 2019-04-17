@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import ListItem from './ListItem';
 
-class List extends React.Component {
+class EmployeeList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,4 +43,4 @@ const ListStyled = styled.ul`
   width: 400px;
 `;
 
-export default List;
+export default EmployeeList;

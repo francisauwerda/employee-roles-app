@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import List from './List';
 import Form from './Form';
 import Container from './common/Container';
+import EmployeeList from './EmployeeList';
 
 const App = () => (
   <div>
     <PageContainer>
       <Container>
-        <List />
+        <EmployeeList />
       </Container>
       <Container>
         <Form />

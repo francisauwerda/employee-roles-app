@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { primaryLight } from '../styles';
+import { primaryLight } from '../../styles';
 
-import avatar from '../../assets/avatar.png';
-import { FONT_WEIGHTS } from './enums';
+import avatar from '../../../assets/avatar.png';
+import { FONT_WEIGHTS } from '../enums';
 
 const ListItem = (props) => {
   const {
