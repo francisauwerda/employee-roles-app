@@ -9,11 +9,12 @@ const FormInput = (props) => {
     onChange,
   } = props;
   return (
-    <div name={name}>
+    <div>
       <span>{label}</span>
       <input
         type="text"
         value={value}
+        name={name}
         onChange={onChange}
       />
     </div>

@@ -14,6 +14,7 @@ class EmployeeForm extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -32,10 +33,21 @@ class EmployeeForm extends React.Component {
 
     this.setState({
       formData: {
-        // ...formData,
+        ...formData,
         [name]: value,
       },
     });
+  }
+
+  handleSubmit(event) {
+    const {
+      state: {
+        formData,
+      },
+    } = this;
+
+    console.log(`\n---\n this.state.formData: ${JSON.stringify(formData, undefined, 2)} \n---\n`);
+    event.preventDefault();
   }
 
   render() {
@@ -51,7 +63,7 @@ class EmployeeForm extends React.Component {
     } = this;
 
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         <FormInput
           name="firstName"
           label="First Name"
@@ -76,7 +88,8 @@ class EmployeeForm extends React.Component {
           value={nationality}
           onChange={this.handleInputChange}
         />
-      </div>
+        <input type="submit" value="Submit" />
+      </form>
     );
   }
 }
