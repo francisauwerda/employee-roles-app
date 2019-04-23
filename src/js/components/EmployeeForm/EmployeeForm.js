@@ -1,5 +1,6 @@
 import React from 'react';
 import FormInput from '../common/FormInput';
+import { createEmployee } from '../../../api';
 
 class EmployeeForm extends React.Component {
   constructor(props) {
@@ -39,15 +40,17 @@ class EmployeeForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+    event.preventDefault();
+
     const {
       state: {
         formData,
       },
     } = this;
 
-    console.log(`\n---\n this.state.formData: ${JSON.stringify(formData, undefined, 2)} \n---\n`);
-    event.preventDefault();
+    // TODO: Add validation here.
+    await createEmployee(formData);
   }
 
   render() {

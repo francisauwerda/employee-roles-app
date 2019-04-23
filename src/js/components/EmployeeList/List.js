@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import _ from 'lodash';
 
 import ListItem from './ListItem';
+import { getEmployees } from '../../../api';
 
 class EmployeeList extends React.Component {
   constructor(props) {
@@ -13,10 +14,7 @@ class EmployeeList extends React.Component {
   }
 
   async componentDidMount() {
-    // eslint-disable-next-line no-undef
-    const response = await fetch('https://employee-statistics.herokuapp.com/api/employees');
-    const jsonResponse = await response.json();
-    const { employees } = jsonResponse;
+    const employees = await getEmployees();
     this.setState({
       employees: _.sortBy(employees, ['lastName']),
     });
