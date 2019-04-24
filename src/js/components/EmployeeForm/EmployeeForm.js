@@ -51,6 +51,15 @@ class EmployeeForm extends React.Component {
 
     // TODO: Add validation here.
     await createEmployee(formData);
+
+    this.setState({
+      formData: {
+        firstName: '',
+        lastName: '',
+        department: '',
+        nationality: '',
+      },
+    });
   }
 
   render() {
