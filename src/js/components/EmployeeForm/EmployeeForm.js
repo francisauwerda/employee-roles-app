@@ -5,6 +5,7 @@ import { createEmployee } from '../../../api';
 class EmployeeForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       formData: {
         firstName: '',
@@ -43,11 +44,7 @@ class EmployeeForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
 
-    const {
-      state: {
-        formData,
-      },
-    } = this;
+    const { formData } = this.state;
 
     // TODO: Add validation here.
     await createEmployee(formData);

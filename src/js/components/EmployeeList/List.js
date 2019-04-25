@@ -8,8 +8,10 @@ import { getEmployees } from '../../../api';
 class EmployeeList extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       employees: [],
+      loading: true,
     };
   }
 
@@ -17,15 +19,18 @@ class EmployeeList extends React.Component {
     const employees = await getEmployees();
     this.setState({
       employees: _.sortBy(employees, ['lastName']),
+      loading: false,
     });
   }
 
   render() {
-    const { employees } = this.state;
+    const { employees, loading } = this.state;
     return (
       <ListStyled className="list">
         {
-          employees.map(employee => <ListItem key={employee.id} employee={employee} />)
+          loading
+            ? <p>Loading...</p>
+            : employees.map(employee => <ListItem key={employee.id} employee={employee} />)
         }
       </ListStyled>
     );
