@@ -1,21 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
+import _ from 'lodash';
 import EmployeeForm from './EmployeeForm';
 import Container from './common/Container';
 import EmployeeList from './EmployeeList';
+import { getEmployees } from '../../api';
 
-const App = () => (
-  <div>
-    <PageContainer>
-      <Container>
-        <EmployeeList />
-      </Container>
-      <Container>
-        <EmployeeForm />
-      </Container>
-    </PageContainer>
-  </div>
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      employees: [],
+      employeesLoading: true,
+    };
+
+    this.fetchEmployeesHandler = this.fetchEmployeesHandler.bind(this);
+  }
+
+  async fetchEmployeesHandler() {
+    const employees = await getEmployees();
+    this.setState({
+      employees: _.sortBy(employees, ['lastName']),
+      employeesLoading: false,
+    });
+  }
+
+  render() {
+    const {
+      employees,
+      employeesLoading,
+    } = this.state;
+
+    return (
+      <div>
+        <PageContainer>
+          <Container>
+            <EmployeeList
+              employees={employees}
+              fetchEmployees={this.fetchEmployeesHandler}
+              employeesLoading={employeesLoading}
+            />
+          </Container>
+          <Container>
+            <EmployeeForm
+              fetchEmployees={this.fetchEmployeesHandler}
+            />
+          </Container>
+        </PageContainer>
+      </div>
+    );
+  }
+}
 
 const PageContainer = styled.div`
   display: grid;

@@ -1,34 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import _ from 'lodash';
+import PropTypes from 'prop-types';
 
 import ListItem from './ListItem';
-import { getEmployees } from '../../../api';
 
 class EmployeeList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      employees: [],
-      loading: true,
-    };
-  }
-
   async componentDidMount() {
-    const employees = await getEmployees();
-    this.setState({
-      employees: _.sortBy(employees, ['lastName']),
-      loading: false,
-    });
+    const { fetchEmployees } = this.props;
+    fetchEmployees();
   }
 
   render() {
-    const { employees, loading } = this.state;
+    const {
+      employees,
+      employeesLoading,
+    } = this.props;
+
     return (
       <ListStyled className="list">
         {
-          loading
+          employeesLoading
             ? <p>Loading...</p>
             : employees.map(employee => <ListItem key={employee.id} employee={employee} />)
         }
@@ -36,6 +27,14 @@ class EmployeeList extends React.Component {
     );
   }
 }
+
+
+EmployeeList.propTypes = {
+  fetchEmployees: PropTypes.func.isRequired,
+  employees: PropTypes.node.isRequired,
+  employeesLoading: PropTypes.bool.isRequired,
+};
+
 
 const ListStyled = styled.ul`
   /* Reset list styles */

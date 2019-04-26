@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FormInput from '../common/FormInput';
 import { createEmployee } from '../../../api';
 
@@ -45,6 +46,7 @@ class EmployeeForm extends React.Component {
     event.preventDefault();
 
     const { formData } = this.state;
+    const { fetchEmployees } = this.props;
 
     // TODO: Add validation here.
     await createEmployee(formData);
@@ -57,6 +59,8 @@ class EmployeeForm extends React.Component {
         nationality: '',
       },
     });
+
+    fetchEmployees();
   }
 
   render() {
@@ -102,5 +106,9 @@ class EmployeeForm extends React.Component {
     );
   }
 }
+
+EmployeeForm.propTypes = {
+  fetchEmployees: PropTypes.func.isRequired,
+};
 
 export default EmployeeForm;
