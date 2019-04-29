@@ -74,6 +74,7 @@ const InputStyled = styled.input`
 const FormInputStyled = styled.div`
   font-size: 16px;
   position: relative;
+  width: 280px;
 `;
 
 FormInput.propTypes = {

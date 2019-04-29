@@ -5,6 +5,7 @@ export const FONT_WEIGHTS = {
   lighter: 200,
   light: 300,
   normal: 400,
+  button: 500,
   bold: 700,
   bolder: 800,
   boldest: 900,

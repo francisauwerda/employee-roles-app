@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 import FormInput from '../common/FormInput';
+import Button from '../common/Button';
 import { createEmployee } from '../../../api';
 
 class EmployeeForm extends React.Component {
@@ -14,6 +17,7 @@ class EmployeeForm extends React.Component {
         department: '',
         nationality: '',
       },
+      submitting: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -48,9 +52,10 @@ class EmployeeForm extends React.Component {
     const { formData } = this.state;
     const { fetchEmployees } = this.props;
 
+    this.setState({ submitting: true });
+
     // TODO: Add validation here.
     await createEmployee(formData);
-
     this.setState({
       formData: {
         firstName: '',
@@ -58,6 +63,7 @@ class EmployeeForm extends React.Component {
         department: '',
         nationality: '',
       },
+      submitting: false,
     });
 
     fetchEmployees();
@@ -72,11 +78,12 @@ class EmployeeForm extends React.Component {
           department,
           nationality,
         },
+        submitting,
       },
     } = this;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <FormStyled>
         <FormInput
           name="firstName"
           label="First Name"
@@ -101,11 +108,22 @@ class EmployeeForm extends React.Component {
           value={nationality}
           onChange={this.handleInputChange}
         />
-        <input type="submit" value="Submit" />
-      </form>
+        <Button
+          type="submit"
+          onClick={this.handleSubmit}
+          submitting={submitting}
+        >
+          <span>Submit</span>
+        </Button>
+      </FormStyled>
     );
   }
 }
+
+const FormStyled = styled.form`
+  width: 400px;
+  margin-top: 14px;
+`;
 
 EmployeeForm.propTypes = {
   fetchEmployees: PropTypes.func.isRequired,
