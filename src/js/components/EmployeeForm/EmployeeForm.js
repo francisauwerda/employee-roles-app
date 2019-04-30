@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import FormInput from '../common/FormInput';
-import Button from '../common/Button';
+import Button from '../common/styled/Button';
 import { createEmployee } from '../../../api';
 
 class EmployeeForm extends React.Component {

@@ -1,6 +1,6 @@
 /* eslint-disable no-confusing-arrow */
 import styled from 'styled-components';
-import { FONT_WEIGHTS } from '../enums';
+import { FONT_WEIGHTS } from '../../enums';
 
 const buttonSize = '0.875rem';
 const buttonBackgroundColor = 'rgb(98, 0, 238)';
