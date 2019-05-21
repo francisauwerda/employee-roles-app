@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { FONT_WEIGHTS } from '../enums';
-import { primaryLight } from '../../styles';
 import FlexContainer from '../common/styled/FlexContainer';
+import ActionIcon from '../common/styled/ActionIcon';
 
 // Icons
 import avatar from '../../../assets/avatar.png';
@@ -45,10 +45,12 @@ const ListItem = (props) => {
           </SecondLineText>
         </FlexContainer>
       </FlexContainer>
-      <SecondaryAction
-        alignSelf="flex-start"
-      >
-        <ActionIcon src={deleteIcon} alt="delete-icon" />
+      <SecondaryAction>
+        <ActionIcon
+          backgroundImage={deleteIcon}
+          onClick={() => console.log('CLICKED')}
+          submitting={false}
+        />
       </SecondaryAction>
     </ListItemStyled>
   );
@@ -86,20 +88,11 @@ const AvatarContainer = styled(FlexContainer)`
   padding-right: 16px;
 `;
 
-const ActionIcon = styled.img`
-  width: inherit;
-  height: inherit;
-`;
-
 const SecondaryAction = styled(FlexContainer)`
   cursor: pointer;
   width: 24px;
   height: 24px;
   padding-left: 16px;
-
-  &:hover {
-    background-color: ${primaryLight};
-  }
 `;
 
 const AvatarStyled = styled.img`
