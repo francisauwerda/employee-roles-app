@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import ListItem from './ListItem';
+import { employeeType } from './types';
 
 class EmployeeList extends React.Component {
   async componentDidMount() {
@@ -14,14 +15,21 @@ class EmployeeList extends React.Component {
     const {
       employees,
       employeesLoading,
+      deleteEmployee,
     } = this.props;
 
     return (
-      <ListStyled className="list">
+      <ListStyled>
         {
           employeesLoading
             ? <p>Loading...</p>
-            : employees.map(employee => <ListItem key={employee.id} employee={employee} />)
+            : employees.map(employee => (
+              <ListItem
+                key={employee.id}
+                employee={employee}
+                deleteEmployee={() => deleteEmployee(employee.id)}
+              />
+            ))
         }
       </ListStyled>
     );
@@ -30,9 +38,10 @@ class EmployeeList extends React.Component {
 
 
 EmployeeList.propTypes = {
+  employees: PropTypes.arrayOf(employeeType).isRequired,
   fetchEmployees: PropTypes.func.isRequired,
-  employees: PropTypes.node.isRequired,
   employeesLoading: PropTypes.bool.isRequired,
+  deleteEmployee: PropTypes.func.isRequired,
 };
 
 

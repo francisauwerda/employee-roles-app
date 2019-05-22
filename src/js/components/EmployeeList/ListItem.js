@@ -9,6 +9,7 @@ import ActionIcon from '../common/styled/ActionIcon';
 // Icons
 import avatar from '../../../assets/avatar.png';
 import deleteIcon from '../../../assets/baseline_delete_black_24dp.png';
+import { employeeType } from './types';
 
 
 const ListItem = (props) => {
@@ -19,8 +20,11 @@ const ListItem = (props) => {
       nationality,
       department,
     },
+    deleteEmployee,
   } = props;
+
   const name = `${firstName} ${lastName}`;
+
   return (
     <ListItemStyled>
       <FlexContainer>
@@ -48,7 +52,7 @@ const ListItem = (props) => {
       <SecondaryAction>
         <ActionIcon
           backgroundImage={deleteIcon}
-          onClick={() => console.log('CLICKED')}
+          onClick={deleteEmployee}
           submitting={false}
         />
       </SecondaryAction>
@@ -57,12 +61,8 @@ const ListItem = (props) => {
 };
 
 ListItem.propTypes = {
-  employee: PropTypes.shape({
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    nationality: PropTypes.string,
-    department: PropTypes.string,
-  }).isRequired,
+  employee: employeeType.isRequired,
+  deleteEmployee: PropTypes.func.isRequired,
 };
 
 const Text = styled.div`
@@ -72,7 +72,6 @@ const Text = styled.div`
 Text.defaultProps = {
   fontWeight: FONT_WEIGHTS.normal,
 };
-
 
 const FirstLineText = styled(Text)`
   font-size: 16px;

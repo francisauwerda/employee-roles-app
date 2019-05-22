@@ -8,7 +8,7 @@ export const createEmployee = async (formData) => {
 
   const response = await fetch(
     `${BASE_URL}${URL.employees}`, {
-      method: 'post',
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -27,4 +27,19 @@ export const getEmployees = async () => {
   const jsonResponse = await response.json();
   const { employees } = jsonResponse;
   return employees;
+};
+
+export const deleteEmployee = async (employeeId) => {
+  const response = await fetch(
+    `${BASE_URL}${URL.deleteEmployee(employeeId)}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  const jsonResponse = await response.json();
+  const { employee } = jsonResponse;
+  return employee;
 };

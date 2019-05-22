@@ -12,7 +12,7 @@ const Container = (props) => {
 };
 
 Container.propTypes = {
-  children: PropTypes.instanceOf(PropTypes.node).isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 const ContainerStyled = styled.div`

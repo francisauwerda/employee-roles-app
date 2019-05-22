@@ -4,7 +4,7 @@ import _ from 'lodash';
 import EmployeeForm from './EmployeeForm';
 import Container from './common/Container';
 import EmployeeList from './EmployeeList';
-import { getEmployees } from '../../api';
+import { getEmployees, deleteEmployee } from '../../api';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class App extends React.Component {
     };
 
     this.fetchEmployeesHandler = this.fetchEmployeesHandler.bind(this);
+    this.deleteEmployeeHandler = this.deleteEmployeeHandler.bind(this);
   }
 
   async fetchEmployeesHandler() {
@@ -24,6 +25,21 @@ class App extends React.Component {
       employees: _.sortBy(employees, ['lastName']),
       employeesLoading: false,
     });
+  }
+
+  async deleteEmployeeHandler(employeeId) {
+    const deletedEmployee = await deleteEmployee(employeeId);
+
+    if (!deletedEmployee) {
+      console.log(`Couldn't delete employee ${employeeId}`);
+    }
+
+    const {
+      employees,
+    } = this.state;
+
+    const updatedEmployees = employees.filter(employee => employee.id !== deletedEmployee.id);
+    this.setState({ employees: updatedEmployees });
   }
 
   render() {
@@ -40,6 +56,7 @@ class App extends React.Component {
               employees={employees}
               fetchEmployees={this.fetchEmployeesHandler}
               employeesLoading={employeesLoading}
+              deleteEmployee={this.deleteEmployeeHandler}
             />
           </Container>
           <Container>
