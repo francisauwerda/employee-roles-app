@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './js/components/App';
+import AppRouter from './js/components/AppRouter';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// eslint-disable-next-line no-undef
+ReactDOM.render(<AppRouter />, document.getElementById('root'));

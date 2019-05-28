@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
-import EmployeeForm from './EmployeeForm';
-import Container from './common/Container';
-import EmployeeList from './EmployeeList';
-import { getEmployees, deleteEmployee } from '../../api';
+import EmployeeForm from '../EmployeeForm';
+import Container from '../common/Container';
+import EmployeeList from '../EmployeeList';
+import { getEmployees, deleteEmployee } from '../../../api';
 
-class App extends React.Component {
+class Employees extends React.Component {
   constructor(props) {
     super(props);
 
@@ -81,4 +81,4 @@ const PageContainer = styled.div`
   }
 `;
 
-export default App;
+export default Employees;
