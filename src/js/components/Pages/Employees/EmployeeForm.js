@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import FormInput from '../../common/FormInput';
 import Button from '../../common/styled/Button';
 import { createEmployee } from '../../../../api';
+import FormStyled from '../../common/styled/FormStyled';
 
 class EmployeeForm extends React.Component {
   constructor(props) {
@@ -119,11 +119,6 @@ class EmployeeForm extends React.Component {
     );
   }
 }
-
-const FormStyled = styled.form`
-  width: 400px;
-  margin-top: 14px;
-`;
 
 EmployeeForm.propTypes = {
   fetchEmployees: PropTypes.func.isRequired,

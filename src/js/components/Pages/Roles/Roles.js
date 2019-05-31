@@ -2,6 +2,7 @@ import React from 'react';
 import PageContainer from '../../common/styled/PageContainer';
 import Container from '../../common/Container';
 import RoleList from './RolesList';
+import RoleForm from './RoleForm';
 import { getRoles, deleteRole } from '../../../../api';
 
 class Roles extends React.Component {
@@ -51,7 +52,7 @@ class Roles extends React.Component {
           />
         </Container>
         <Container>
-          <h2>Roles form</h2>
+          <RoleForm />
         </Container>
       </PageContainer>
     );
