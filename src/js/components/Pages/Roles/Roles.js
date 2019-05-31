@@ -1,8 +1,8 @@
 import React from 'react';
-import PageContainer from '../common/styled/PageContainer';
-import Container from '../common/Container';
-import RoleList from '../RoleList';
-import { getRoles, deleteRole } from '../../../api';
+import PageContainer from '../../common/styled/PageContainer';
+import Container from '../../common/Container';
+import RoleList from './RolesList';
+import { getRoles, deleteRole } from '../../../../api';
 
 class Roles extends React.Component {
   constructor(props) {

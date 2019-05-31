@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { FONT_WEIGHTS } from '../enums';
-import FlexContainer from '../common/styled/FlexContainer';
-import ActionIcon from '../common/styled/ActionIcon';
+import FlexContainer from './styled/FlexContainer';
+import ActionIcon from './styled/ActionIcon';
 
 // Icons
 import deleteIcon from '../../../assets/baseline_delete_black_24dp.png';

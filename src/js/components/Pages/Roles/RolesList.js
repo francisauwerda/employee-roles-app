@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ListStyled from '../common/styled/ListStyled';
-import ListItem from '../EmployeeList/ListItem';
+import ListStyled from '../../common/styled/ListStyled';
+import ListItem from '../../common/ListItem';
 import { roleType } from './types';
 
-import avatarIcon from '../../../assets/teamwork.png';
+import avatarIcon from '../../../../assets/teamwork.png';
 
 class RoleList extends React.Component {
   async componentDidMount() {

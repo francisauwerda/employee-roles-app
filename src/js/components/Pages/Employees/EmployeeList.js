@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ListItem from './ListItem';
+import ListItem from '../../common/ListItem';
 import { employeeType } from './types';
-import ListStyled from '../common/styled/ListStyled';
+import ListStyled from '../../common/styled/ListStyled';
 
-import avatarIcon from '../../../assets/avatar.png';
+import avatarIcon from '../../../../assets/avatar.png';
 
 class EmployeeList extends React.Component {
   async componentDidMount() {

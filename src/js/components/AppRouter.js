@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Employees from './Pages/Employees';
-import Roles from './Pages/Roles';
+import Employees from './Pages/Employees/Employees';
+import Roles from './Pages/Roles/Roles';
 
 function Home() {
   return <h2>Home page</h2>;

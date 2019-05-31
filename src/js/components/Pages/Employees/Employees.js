@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
-import EmployeeForm from '../EmployeeForm';
-import Container from '../common/Container';
-import EmployeeList from '../EmployeeList';
-import { getEmployees, deleteEmployee } from '../../../api';
-import PageContainer from '../common/styled/PageContainer';
+import EmployeeForm from './EmployeeForm';
+import Container from '../../common/Container';
+import EmployeeList from './EmployeeList';
+import { getEmployees, deleteEmployee } from '../../../../api';
+import PageContainer from '../../common/styled/PageContainer';
 
 class Employees extends React.Component {
   constructor(props) {
