@@ -7,23 +7,16 @@ import FlexContainer from '../common/styled/FlexContainer';
 import ActionIcon from '../common/styled/ActionIcon';
 
 // Icons
-import avatar from '../../../assets/avatar.png';
 import deleteIcon from '../../../assets/baseline_delete_black_24dp.png';
-import { employeeType } from './types';
-
 
 const ListItem = (props) => {
   const {
-    employee: {
-      firstName,
-      lastName,
-      nationality,
-      department,
-    },
-    deleteEmployee,
+    mainText,
+    secondaryText,
+    tertiaryText,
+    deleteListItem,
+    avatarIcon,
   } = props;
-
-  const name = `${firstName} ${lastName}`;
 
   return (
     <ListItemStyled>
@@ -32,27 +25,27 @@ const ListItem = (props) => {
           justifyContent="flex-start"
           flexDirection="column"
         >
-          <AvatarStyled src={avatar} alt="avatar" />
+          <AvatarStyled src={avatarIcon} alt="avatar" />
         </AvatarContainer>
         <FlexContainer
           justifyContent="flex-start"
           flexDirection="column"
         >
           <FirstLineText>
-            {name}
+            {mainText}
           </FirstLineText>
           <SecondLineText>
-            {nationality}
+            {secondaryText}
           </SecondLineText>
           <SecondLineText>
-            {department}
+            {tertiaryText}
           </SecondLineText>
         </FlexContainer>
       </FlexContainer>
       <SecondaryAction>
         <ActionIcon
           backgroundImage={deleteIcon}
-          onClick={deleteEmployee}
+          onClick={deleteListItem}
           submitting={false}
         />
       </SecondaryAction>
@@ -61,8 +54,11 @@ const ListItem = (props) => {
 };
 
 ListItem.propTypes = {
-  employee: employeeType.isRequired,
-  deleteEmployee: PropTypes.func.isRequired,
+  mainText: PropTypes.string.isRequired,
+  secondaryText: PropTypes.string.isRequired,
+  tertiaryText: PropTypes.string.isRequired,
+  deleteListItem: PropTypes.func.isRequired,
+  avatarIcon: PropTypes.string.isRequired,
 };
 
 const Text = styled.div`

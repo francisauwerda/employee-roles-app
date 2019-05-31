@@ -1,13 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Employees from './Pages/Employees';
+import Roles from './Pages/Roles';
 
 function Home() {
   return <h2>Home page</h2>;
-}
-
-function Roles() {
-  return <h2>Roles page</h2>;
 }
 
 function AppRouter() {

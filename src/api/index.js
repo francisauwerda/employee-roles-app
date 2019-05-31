@@ -43,3 +43,25 @@ export const deleteEmployee = async (employeeId) => {
   const { employee } = jsonResponse;
   return employee;
 };
+
+export const getRoles = async () => {
+  const response = await fetch(`${BASE_URL}${URL.roles}`);
+  const jsonResponse = await response.json();
+  const { roles } = jsonResponse;
+  return roles;
+};
+
+export const deleteRole = async (roleId) => {
+  const response = await fetch(
+    `${BASE_URL}${URL.deleteRole(roleId)}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  const jsonResponse = await response.json();
+  const { role } = jsonResponse;
+  return role;
+};

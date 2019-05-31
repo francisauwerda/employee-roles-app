@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import _ from 'lodash';
 import EmployeeForm from '../EmployeeForm';
 import Container from '../common/Container';
 import EmployeeList from '../EmployeeList';
 import { getEmployees, deleteEmployee } from '../../../api';
+import PageContainer from '../common/styled/PageContainer';
 
 class Employees extends React.Component {
   constructor(props) {
@@ -69,16 +69,5 @@ class Employees extends React.Component {
     );
   }
 }
-
-const PageContainer = styled.div`
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: auto;
-
-  @media only screen and (max-width: 600px) {
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-  }
-`;
 
 export default Employees;
