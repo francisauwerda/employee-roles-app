@@ -30,6 +30,7 @@ class RoleList extends React.Component {
               return (
                 <ListItem
                   key={role.id}
+                  itemId={role.id}
                   mainText={role.title}
                   secondaryText={role.description}
                   tertiaryText={duration}

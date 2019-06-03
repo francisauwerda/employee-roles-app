@@ -1,24 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import FormStyled from '../../common/styled/FormStyled';
 import Button from '../../common/styled/Button';
 import FormInput from '../../common/FormInput';
+import { createRole } from '../../../../api';
+
+const INITIAL_STATE = {
+  formData: {
+    title: '',
+    description: '',
+    durationInWeeks: undefined,
+    employeeId: undefined,
+  },
+  submitting: false,
+};
 
 class RoleForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      formData: {
-        title: '',
-        description: '',
-        durationInWeeks: undefined,
-        employeeId: undefined,
-      },
-      submitting: false,
-    };
+    this.state = INITIAL_STATE;
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -41,6 +46,23 @@ class RoleForm extends React.Component {
         [name]: value,
       },
     });
+  }
+
+  async handleSubmit(event) {
+    event.preventDefault();
+
+    const { formData } = this.state;
+    const { fetchRoles } = this.props;
+
+    this.setState({ submitting: true });
+
+    // TODO: Add Form validation
+    await createRole(formData);
+    this.setState({
+      ...INITIAL_STATE,
+    });
+
+    fetchRoles();
   }
 
   render() {
@@ -69,7 +91,9 @@ class RoleForm extends React.Component {
         />
         <FormInput
           name="durationInWeeks"
-          label="Duration In Weeks"
+          label="How many weeks?"
+          type="number"
+          min="5"
           value={durationInWeeks}
           onChange={this.handleInputChange}
         />
@@ -82,6 +106,7 @@ class RoleForm extends React.Component {
         <Button
           type="submit"
           submitting={submitting}
+          onClick={this.handleSubmit}
         >
           <span>Submit</span>
         </Button>
@@ -89,5 +114,9 @@ class RoleForm extends React.Component {
     );
   }
 }
+
+RoleForm.propTypes = {
+  fetchRoles: PropTypes.func.isRequired,
+};
 
 export default RoleForm;

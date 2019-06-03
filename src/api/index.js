@@ -65,3 +65,22 @@ export const deleteRole = async (roleId) => {
   const { role } = jsonResponse;
   return role;
 };
+
+export const createRole = async (formData) => {
+  const body = JSON.stringify(formData);
+
+  const response = await fetch(
+    `${BASE_URL}${URL.roles}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body,
+    },
+  );
+
+  const successResponse = await response.json();
+
+  return successResponse;
+};

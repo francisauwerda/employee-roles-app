@@ -28,6 +28,7 @@ class EmployeeList extends React.Component {
             : employees.map(employee => (
               <ListItem
                 key={employee.id}
+                itemId={employee.id}
                 mainText={`${employee.firstName} ${employee.lastName}`}
                 secondaryText={employee.nationality}
                 tertiaryText={employee.department}

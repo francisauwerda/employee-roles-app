@@ -52,7 +52,9 @@ class Roles extends React.Component {
           />
         </Container>
         <Container>
-          <RoleForm />
+          <RoleForm
+            fetchRoles={this.fetchRolesHandler}
+          />
         </Container>
       </PageContainer>
     );

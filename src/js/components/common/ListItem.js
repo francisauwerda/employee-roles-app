@@ -16,6 +16,7 @@ const ListItem = (props) => {
     tertiaryText,
     deleteListItem,
     avatarIcon,
+    itemId,
   } = props;
 
   return (
@@ -32,7 +33,7 @@ const ListItem = (props) => {
           flexDirection="column"
         >
           <FirstLineText>
-            {mainText}
+            {`${mainText} (${itemId})`}
           </FirstLineText>
           <SecondLineText>
             {secondaryText}
@@ -59,6 +60,7 @@ ListItem.propTypes = {
   tertiaryText: PropTypes.string.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   avatarIcon: PropTypes.string.isRequired,
+  itemId: PropTypes.number.isRequired,
 };
 
 const Text = styled.div`

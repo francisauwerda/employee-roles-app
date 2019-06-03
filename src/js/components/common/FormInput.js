@@ -9,11 +9,14 @@ const FormInput = (props) => {
     label,
     value,
     onChange,
+    type,
+    min,
   } = props;
   return (
     <FormInputStyled>
       <InputStyled
-        type="text"
+        type={type}
+        min={min}
         value={value}
         name={name}
         onChange={onChange}
@@ -78,14 +81,17 @@ const FormInputStyled = styled.div`
 `;
 
 FormInput.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  min: PropTypes.string,
 };
 
 FormInput.defaultProps = {
-  label: undefined,
+  type: 'text',
+  min: undefined,
 };
 
 export default FormInput;
