@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { FONT_WEIGHTS } from '../enums';
 import FlexContainer from './styled/FlexContainer';
 import ActionIcon from './styled/ActionIcon';
+import AvatarContainer from './styled/AvatarContainer';
+import AvatarStyled from './styled/AvatarStyled';
 
 // Icons
 import deleteIcon from '../../../assets/baseline_delete_black_24dp.png';
@@ -81,21 +83,11 @@ const SecondLineText = styled(Text)`
   color: #00000099;
 `;
 
-const AvatarContainer = styled(FlexContainer)`
-  padding-right: 16px;
-`;
-
 const SecondaryAction = styled(FlexContainer)`
   cursor: pointer;
   width: 24px;
   height: 24px;
   padding-left: 16px;
-`;
-
-const AvatarStyled = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
 `;
 
 const ListItemStyled = styled.li`

@@ -6,6 +6,7 @@ import Button from '../../common/styled/Button';
 import FormInput from '../../common/FormInput';
 import { createRole } from '../../../../api';
 import { employeeType } from '../Employees/types';
+import ClickableAvatar from '../../common/ClickableAvatar';
 
 const INITIAL_STATE = {
   formData: {
@@ -106,7 +107,12 @@ class RoleForm extends React.Component {
         />
         <div>
           {
-            employees.map(employee => <p key={employee.id}>{employee.firstName}</p>)
+            employees.map(employee => (
+              <div key={employee.id}>
+                <ClickableAvatar />
+                <p>{employee.firstName}</p>
+              </div>
+            ))
           }
         </div>
         <Button
