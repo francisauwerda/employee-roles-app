@@ -5,6 +5,7 @@ import FormStyled from '../../common/styled/FormStyled';
 import Button from '../../common/styled/Button';
 import FormInput from '../../common/FormInput';
 import { createRole } from '../../../../api';
+import { employeeType } from '../Employees/types';
 
 const INITIAL_STATE = {
   formData: {
@@ -17,16 +18,14 @@ const INITIAL_STATE = {
 };
 
 class RoleForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = INITIAL_STATE;
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  static propTypes = {
+    fetchRoles: PropTypes.func.isRequired,
+    employees: PropTypes.arrayOf(employeeType).isRequired,
   }
 
-  handleInputChange(event) {
+  state = INITIAL_STATE;
+
+  handleInputChange = (event) => {
     const {
       target: {
         value,
@@ -48,7 +47,7 @@ class RoleForm extends React.Component {
     });
   }
 
-  async handleSubmit(event) {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     const { formData } = this.state;
@@ -75,6 +74,8 @@ class RoleForm extends React.Component {
       },
       submitting,
     } = this.state;
+    const { employees } = this.props;
+
     return (
       <FormStyled>
         <FormInput
@@ -103,6 +104,11 @@ class RoleForm extends React.Component {
           value={employeeId}
           onChange={this.handleInputChange}
         />
+        <div>
+          {
+            employees.map(employee => <p key={employee.id}>{employee.firstName}</p>)
+          }
+        </div>
         <Button
           type="submit"
           submitting={submitting}
@@ -114,9 +120,5 @@ class RoleForm extends React.Component {
     );
   }
 }
-
-RoleForm.propTypes = {
-  fetchRoles: PropTypes.func.isRequired,
-};
 
 export default RoleForm;

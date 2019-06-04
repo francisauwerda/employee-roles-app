@@ -1,73 +1,47 @@
 import React from 'react';
-import _ from 'lodash';
+import PropTypes from 'prop-types';
+
 import EmployeeForm from './EmployeeForm';
 import Container from '../../common/Container';
 import EmployeeList from './EmployeeList';
-import { getEmployees, deleteEmployee } from '../../../../api';
 import PageContainer from '../../common/styled/PageContainer';
 
-class Employees extends React.Component {
-  constructor(props) {
-    super(props);
+import { employeeType } from './types';
 
-    this.state = {
-      employees: [],
-      employeesLoading: true,
-    };
+const Employees = (props) => {
+  const {
+    employees,
+    employeesLoading,
+    fetchEmployees,
+    deleteEmployee,
+  } = props;
 
-    this.fetchEmployeesHandler = this.fetchEmployeesHandler.bind(this);
-    this.deleteEmployeeHandler = this.deleteEmployeeHandler.bind(this);
-  }
+  return (
+    <div>
+      <PageContainer>
+        <Container>
+          <EmployeeList
+            employees={employees}
+            fetchEmployees={fetchEmployees}
+            employeesLoading={employeesLoading}
+            deleteEmployee={deleteEmployee}
+          />
+        </Container>
+        <Container>
+          <EmployeeForm
+            fetchEmployees={fetchEmployees}
+          />
+        </Container>
+      </PageContainer>
+    </div>
+  );
+};
 
-  async fetchEmployeesHandler() {
-    const employees = await getEmployees();
-    this.setState({
-      employees: _.sortBy(employees, ['lastName']),
-      employeesLoading: false,
-    });
-  }
-
-  async deleteEmployeeHandler(employeeId) {
-    const deletedEmployee = await deleteEmployee(employeeId);
-
-    if (!deletedEmployee) {
-      console.log(`Couldn't delete employee ${employeeId}`);
-    }
-
-    const {
-      employees,
-    } = this.state;
-
-    const updatedEmployees = employees.filter(employee => employee.id !== deletedEmployee.id);
-    this.setState({ employees: updatedEmployees });
-  }
-
-  render() {
-    const {
-      employees,
-      employeesLoading,
-    } = this.state;
-
-    return (
-      <div>
-        <PageContainer>
-          <Container>
-            <EmployeeList
-              employees={employees}
-              fetchEmployees={this.fetchEmployeesHandler}
-              employeesLoading={employeesLoading}
-              deleteEmployee={this.deleteEmployeeHandler}
-            />
-          </Container>
-          <Container>
-            <EmployeeForm
-              fetchEmployees={this.fetchEmployeesHandler}
-            />
-          </Container>
-        </PageContainer>
-      </div>
-    );
-  }
-}
+Employees.propTypes = {
+  employees: PropTypes.arrayOf(employeeType).isRequired,
+  fetchEmployees: PropTypes.func.isRequired,
+  employeesLoading: PropTypes.bool.isRequired,
+  deleteEmployee: PropTypes.func.isRequired,
+};
 
 export default Employees;

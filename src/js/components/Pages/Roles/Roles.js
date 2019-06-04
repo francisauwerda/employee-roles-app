@@ -1,24 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import PageContainer from '../../common/styled/PageContainer';
 import Container from '../../common/Container';
 import RoleList from './RolesList';
 import RoleForm from './RoleForm';
+import { employeeType } from '../Employees/types';
 import { getRoles, deleteRole } from '../../../../api';
 
 class Roles extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      roles: [],
-      rolesLoading: true,
-    };
-
-    this.fetchRolesHandler = this.fetchRolesHandler.bind(this);
-    this.deleteRoleHandler = this.deleteRoleHandler.bind(this);
+  static propTypes = {
+    employees: PropTypes.arrayOf(employeeType).isRequired,
   }
 
-  async fetchRolesHandler() {
+  state = {
+    roles: [],
+    rolesLoading: true,
+  }
+
+  fetchRolesHandler = async () => {
     const roles = await getRoles();
     this.setState({
       roles,
@@ -26,7 +26,7 @@ class Roles extends React.Component {
     });
   }
 
-  async deleteRoleHandler(roleId) {
+  deleteRoleHandler = async (roleId) => {
     const deletedRole = await deleteRole(roleId);
 
     if (!deletedRole) {
@@ -41,6 +41,7 @@ class Roles extends React.Component {
 
   render() {
     const { roles, rolesLoading } = this.state;
+    const { employees } = this.props;
     return (
       <PageContainer>
         <Container>
@@ -54,6 +55,7 @@ class Roles extends React.Component {
         <Container>
           <RoleForm
             fetchRoles={this.fetchRolesHandler}
+            employees={employees}
           />
         </Container>
       </PageContainer>
