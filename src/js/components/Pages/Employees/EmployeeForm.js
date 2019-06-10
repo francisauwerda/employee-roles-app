@@ -55,18 +55,23 @@ class EmployeeForm extends React.Component {
     this.setState({ submitting: true });
 
     // TODO: Add validation here.
-    await createEmployee(formData);
-    this.setState({
-      formData: {
-        firstName: '',
-        lastName: '',
-        department: '',
-        nationality: '',
-      },
-      submitting: false,
-    });
+    try {
+      await createEmployee(formData);
+      this.setState({
+        formData: {
+          firstName: '',
+          lastName: '',
+          department: '',
+          nationality: '',
+        },
+        submitting: false,
+      });
 
-    fetchEmployees();
+      fetchEmployees();
+    } catch (error) {
+      console.log('Server error');
+      this.setState({ submitting: false });
+    }
   }
 
   render() {

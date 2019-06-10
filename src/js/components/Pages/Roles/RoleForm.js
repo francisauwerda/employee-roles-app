@@ -6,14 +6,14 @@ import Button from '../../common/styled/Button';
 import FormInput from '../../common/FormInput';
 import { createRole } from '../../../../api';
 import { employeeType } from '../Employees/types';
-import ClickableAvatar from '../../common/ClickableAvatar';
+import EmployeeOptions from './EmployeeOptions';
 
 const INITIAL_STATE = {
   formData: {
     title: '',
     description: '',
-    durationInWeeks: undefined,
-    employeeId: undefined,
+    durationInWeeks: '',
+    employeeId: -1,
   },
   submitting: false,
 };
@@ -48,6 +48,33 @@ class RoleForm extends React.Component {
     });
   }
 
+  handleEmployeeSelected = (id) => {
+    let updatedId = id;
+    const { formData } = this.state;
+
+    if (formData.employeeId === id) {
+      updatedId = -1;
+    }
+
+    this.setState({
+      formData: {
+        ...formData,
+        employeeId: updatedId,
+      },
+    });
+  }
+
+  isValidRoleFormData = (formData) => {
+    if (!formData.title) {
+      return false;
+    }
+    if (formData.employeeId === -1) {
+      return false;
+    }
+
+    return true;
+  }
+
   handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -56,13 +83,23 @@ class RoleForm extends React.Component {
 
     this.setState({ submitting: true });
 
-    // TODO: Add Form validation
-    await createRole(formData);
-    this.setState({
-      ...INITIAL_STATE,
-    });
+    if (!this.isValidRoleFormData(formData)) {
+      console.log('Invalid Form');
+      this.setState({ submitting: false });
+      return;
+    }
 
-    fetchRoles();
+    try {
+      await createRole(formData);
+      this.setState({
+        ...INITIAL_STATE,
+      });
+
+      fetchRoles();
+    } catch (error) {
+      console.log('Server error');
+      this.setState({ submitting: false });
+    }
   }
 
   render() {
@@ -99,22 +136,11 @@ class RoleForm extends React.Component {
           value={durationInWeeks}
           onChange={this.handleInputChange}
         />
-        <FormInput
-          name="employeeId"
-          label="Employee ID"
-          value={employeeId}
-          onChange={this.handleInputChange}
+        <EmployeeOptions
+          employees={employees}
+          handleEmployeeSelected={this.handleEmployeeSelected}
+          activeEmployee={employeeId}
         />
-        <div>
-          {
-            employees.map(employee => (
-              <div key={employee.id}>
-                <ClickableAvatar />
-                <p>{employee.firstName}</p>
-              </div>
-            ))
-          }
-        </div>
         <Button
           type="submit"
           submitting={submitting}
