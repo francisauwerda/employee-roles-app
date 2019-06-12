@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FormInput from '../../common/FormInput';
+import Input from '../../common/TextFields/Input';
 import Button from '../../common/styled/Button';
 import { createEmployee } from '../../../../api';
 import FormStyled from '../../common/styled/FormStyled';
@@ -89,25 +89,25 @@ class EmployeeForm extends React.Component {
 
     return (
       <FormStyled>
-        <FormInput
+        <Input
           name="firstName"
           label="First Name"
           value={firstName}
           onChange={this.handleInputChange}
         />
-        <FormInput
+        <Input
           name="lastName"
           label="Last Name"
           value={lastName}
           onChange={this.handleInputChange}
         />
-        <FormInput
+        <Input
           name="department"
           label="Department"
           value={department}
           onChange={this.handleInputChange}
         />
-        <FormInput
+        <Input
           name="nationality"
           label="Nationality"
           value={nationality}

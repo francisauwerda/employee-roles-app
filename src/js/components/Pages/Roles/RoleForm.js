@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import FormStyled from '../../common/styled/FormStyled';
 import Button from '../../common/styled/Button';
-import FormInput from '../../common/FormInput';
+import Input from '../../common/TextFields/Input';
 import { createRole } from '../../../../api';
 import { employeeType } from '../Employees/types';
 import EmployeeOptions from './EmployeeOptions';
+import TextArea from '../../common/TextFields/TextArea';
 
 const INITIAL_STATE = {
   formData: {
@@ -116,19 +117,19 @@ class RoleForm extends React.Component {
 
     return (
       <FormStyled>
-        <FormInput
+        <Input
           name="title"
           label="Title"
           value={title}
           onChange={this.handleInputChange}
         />
-        <FormInput
+        <TextArea
           name="description"
           label="Description"
           value={description}
           onChange={this.handleInputChange}
         />
-        <FormInput
+        <Input
           name="durationInWeeks"
           label="How many weeks?"
           type="number"
