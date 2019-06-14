@@ -1,47 +1,72 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import EmployeeForm from './EmployeeForm';
 import Container from '../../common/Container';
 import EmployeeList from './EmployeeList';
 import PageContainer from '../../common/styled/PageContainer';
 
-import { employeeType } from './types';
+import { getEmployees, deleteEmployee } from '../../../../api';
 
-const Employees = (props) => {
-  const {
-    employees,
-    employeesLoading,
-    fetchEmployees,
-    deleteEmployee,
-  } = props;
+class Employees extends React.Component {
+  state = {
+    employees: [],
+    employeesLoading: true,
+  }
 
-  return (
-    <div>
-      <PageContainer>
-        <Container>
-          <EmployeeList
-            employees={employees}
-            fetchEmployees={fetchEmployees}
-            employeesLoading={employeesLoading}
-            deleteEmployee={deleteEmployee}
-          />
-        </Container>
-        <Container>
-          <EmployeeForm
-            fetchEmployees={fetchEmployees}
-          />
-        </Container>
-      </PageContainer>
-    </div>
-  );
-};
+  async componentDidMount() {
+    await this.fetchEmployeesHandler();
+  }
 
-Employees.propTypes = {
-  employees: PropTypes.arrayOf(employeeType).isRequired,
-  fetchEmployees: PropTypes.func.isRequired,
-  employeesLoading: PropTypes.bool.isRequired,
-  deleteEmployee: PropTypes.func.isRequired,
-};
+  fetchEmployeesHandler = async () => {
+    const employees = await getEmployees();
+    this.setState({
+      employees: _.sortBy(employees, ['lastName']),
+      employeesLoading: false,
+    });
+  }
+
+  deleteEmployeeHandler = async (employeeId) => {
+    const deletedEmployee = await deleteEmployee(employeeId);
+
+    if (!deletedEmployee) {
+      console.log(`Couldn't delete employee ${employeeId}`);
+    }
+
+    const {
+      employees,
+    } = this.state;
+
+    const updatedEmployees = employees.filter(employee => employee.id !== deletedEmployee.id);
+    this.setState({ employees: updatedEmployees });
+  }
+
+  render() {
+    const {
+      employees,
+      employeesLoading,
+    } = this.state;
+
+    return (
+      <div>
+        <PageContainer>
+          <Container>
+            <EmployeeList
+              employees={employees}
+              fetchEmployees={this.fetchEmployeesHandler}
+              employeesLoading={employeesLoading}
+              deleteEmployee={this.deleteEmployeeHandler}
+            />
+          </Container>
+          <Container>
+            <EmployeeForm
+              fetchEmployees={this.fetchEmployeesHandler}
+            />
+          </Container>
+        </PageContainer>
+      </div>
+    );
+  }
+}
 
 export default Employees;

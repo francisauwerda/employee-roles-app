@@ -5,7 +5,6 @@ import FormStyled from '../../common/styled/FormStyled';
 import Button from '../../common/styled/Button';
 import Input from '../../common/TextFields/Input';
 import { createRole } from '../../../../api';
-import { employeeType } from '../Employees/types';
 import EmployeeOptions from './EmployeeOptions';
 import TextArea from '../../common/TextFields/TextArea';
 
@@ -22,7 +21,6 @@ const INITIAL_STATE = {
 class RoleForm extends React.Component {
   static propTypes = {
     fetchRoles: PropTypes.func.isRequired,
-    employees: PropTypes.arrayOf(employeeType).isRequired,
   }
 
   state = INITIAL_STATE;
@@ -113,7 +111,6 @@ class RoleForm extends React.Component {
       },
       submitting,
     } = this.state;
-    const { employees } = this.props;
 
     return (
       <FormStyled>
@@ -138,7 +135,6 @@ class RoleForm extends React.Component {
           onChange={this.handleInputChange}
         />
         <EmployeeOptions
-          employees={employees}
           handleEmployeeSelected={this.handleEmployeeSelected}
           activeEmployee={employeeId}
         />

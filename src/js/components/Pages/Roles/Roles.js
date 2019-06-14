@@ -1,21 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import PageContainer from '../../common/styled/PageContainer';
 import Container from '../../common/Container';
 import RoleList from './RolesList';
 import RoleForm from './RoleForm';
-import { employeeType } from '../Employees/types';
 import { getRoles, deleteRole } from '../../../../api';
 
 class Roles extends React.Component {
-  static propTypes = {
-    employees: PropTypes.arrayOf(employeeType).isRequired,
-  }
-
   state = {
     roles: [],
     rolesLoading: true,
+  }
+
+  async componentDidMount() {
+    await this.fetchRolesHandler();
   }
 
   fetchRolesHandler = async () => {
@@ -40,8 +38,11 @@ class Roles extends React.Component {
   }
 
   render() {
-    const { roles, rolesLoading } = this.state;
-    const { employees } = this.props;
+    const {
+      roles,
+      rolesLoading,
+    } = this.state;
+
     return (
       <PageContainer>
         <Container>
@@ -55,7 +56,6 @@ class Roles extends React.Component {
         <Container>
           <RoleForm
             fetchRoles={this.fetchRolesHandler}
-            employees={employees}
           />
         </Container>
       </PageContainer>
