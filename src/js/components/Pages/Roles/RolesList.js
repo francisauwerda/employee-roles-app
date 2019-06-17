@@ -6,6 +6,7 @@ import ListItem from '../../common/ListItem';
 import { roleType } from './types';
 
 import avatarIcon from '../../../../assets/teamwork.png';
+import Loading from '../../common/Loading';
 
 class RoleList extends React.Component {
   async componentDidMount() {
@@ -24,7 +25,7 @@ class RoleList extends React.Component {
       <ListStyled>
         {
           rolesLoading
-            ? <p>Loading...</p>
+            ? <Loading />
             : roles.map((role) => {
               const duration = `${role.durationInWeeks} weeks`;
               return (
@@ -34,7 +35,7 @@ class RoleList extends React.Component {
                   mainText={role.title}
                   secondaryText={role.description}
                   tertiaryText={duration}
-                  deleteListItem={() => deleteRole(role.id)}
+                  secondaryActionHandler={() => deleteRole(role.id)}
                   avatarIcon={avatarIcon}
                 />
               );

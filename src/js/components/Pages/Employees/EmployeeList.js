@@ -6,6 +6,7 @@ import { employeeType } from './types';
 import ListStyled from '../../common/styled/ListStyled';
 
 import avatarIcon from '../../../../assets/avatar.png';
+import Loading from '../../common/Loading';
 
 const EmployeeList = (props) => {
   const {
@@ -18,7 +19,7 @@ const EmployeeList = (props) => {
     <ListStyled>
       {
         employeesLoading
-          ? <p>Loading...</p>
+          ? <Loading />
           : employees.map(employee => (
             <ListItem
               key={employee.id}
@@ -26,7 +27,7 @@ const EmployeeList = (props) => {
               mainText={`${employee.firstName} ${employee.lastName}`}
               secondaryText={employee.nationality}
               tertiaryText={employee.department}
-              deleteListItem={() => deleteEmployee(employee.id)}
+              secondaryActionHandler={() => deleteEmployee(employee.id)}
               avatarIcon={avatarIcon}
             />
           ))

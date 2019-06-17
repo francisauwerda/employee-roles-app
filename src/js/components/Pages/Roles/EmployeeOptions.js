@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import EmployeeOption from './EmployeeOption';
 import { getEmployees } from '../../../../api';
+import Loading from '../../common/Loading';
 
 class EmployeeOptions extends React.Component {
   static propTypes = {
@@ -34,7 +35,7 @@ class EmployeeOptions extends React.Component {
 
     return (
       employeesLoading
-        ? <p>Loading...</p>
+        ? <Loading />
         : employees.map(employee => (
           <EmployeeOption
             key={employee.id}

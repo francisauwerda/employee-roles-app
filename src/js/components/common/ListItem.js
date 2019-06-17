@@ -16,7 +16,7 @@ const ListItem = (props) => {
     mainText,
     secondaryText,
     tertiaryText,
-    deleteListItem,
+    secondaryActionHandler,
     avatarIcon,
     itemId,
   } = props;
@@ -45,13 +45,15 @@ const ListItem = (props) => {
           </SecondLineText>
         </FlexContainer>
       </FlexContainer>
-      <SecondaryAction>
-        <ActionIcon
-          backgroundImage={deleteIcon}
-          onClick={deleteListItem}
-          submitting={false}
-        />
-      </SecondaryAction>
+      {secondaryActionHandler && (
+        <SecondaryAction>
+          <ActionIcon
+            backgroundImage={deleteIcon}
+            onClick={secondaryActionHandler}
+            submitting={false}
+          />
+        </SecondaryAction>
+      )}
     </ListItemStyled>
   );
 };
@@ -60,7 +62,7 @@ ListItem.propTypes = {
   mainText: PropTypes.string.isRequired,
   secondaryText: PropTypes.string.isRequired,
   tertiaryText: PropTypes.string.isRequired,
-  deleteListItem: PropTypes.func.isRequired,
+  secondaryActionHandler: PropTypes.func.isRequired,
   avatarIcon: PropTypes.string.isRequired,
   itemId: PropTypes.number.isRequired,
 };
