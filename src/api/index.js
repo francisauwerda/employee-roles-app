@@ -84,3 +84,19 @@ export const createRole = async (formData) => {
 
   return successResponse;
 };
+
+export const rotateRole = async (roleId) => {
+  const response = await fetch(
+    `${BASE_URL}${URL.rotateRole(roleId)}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+
+  const successResponse = await response.json();
+
+  return successResponse;
+};

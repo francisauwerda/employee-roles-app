@@ -62,9 +62,13 @@ ListItem.propTypes = {
   mainText: PropTypes.string.isRequired,
   secondaryText: PropTypes.string.isRequired,
   tertiaryText: PropTypes.string.isRequired,
-  secondaryActionHandler: PropTypes.func.isRequired,
+  secondaryActionHandler: PropTypes.func,
   avatarIcon: PropTypes.string.isRequired,
   itemId: PropTypes.number.isRequired,
+};
+
+ListItem.defaultProps = {
+  secondaryActionHandler: () => {},
 };
 
 const Text = styled.div`
