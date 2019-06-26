@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import { getRoles, rotateRole } from '../../../../api';
 import Loading from '../../common/Loading';
@@ -21,7 +22,7 @@ class Home extends React.Component {
   fetchRolesHandler = async () => {
     const roles = await getRoles();
     this.setState({
-      roles,
+      roles: _.sortBy(roles, ['title']),
       rolesLoading: false,
     });
   }
