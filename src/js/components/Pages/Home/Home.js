@@ -8,6 +8,7 @@ import RoleIcon from '../../../../assets/teamwork.png';
 import EmployeeIcon from '../../../../assets/avatar.png';
 import FlexContainer from '../../common/styled/FlexContainer';
 import { generateId } from '../../../helpers';
+import Button from '../../common/styled/Button';
 
 class Home extends React.Component {
   state = {
@@ -45,24 +46,32 @@ class Home extends React.Component {
             return (
               <FlexContainer
                 justifyContent="space-between"
+                alignItems="center"
                 key={generateId()}
               >
-                <button
-                  type="button"
-                  onClick={() => this.rotateRole(role.id)}
-                >
-                  Rotate role
-                </button>
-                <ListItem
-                  itemId={role.id}
-                  mainText={role.title}
-                  secondaryText={role.description}
-                  tertiaryText={`${role.durationInWeeks} weeks`}
-                  avatarIcon={RoleIcon}
-                />
+                <FlexContainer justifyContent="space-between">
+                  <ListItem
+                    itemId={role.id}
+                    mainText={role.title}
+                    secondaryText={role.description}
+                    tertiaryText={`${role.durationInWeeks} weeks`}
+                    secondaryActionHandler={null}
+                    avatarIcon={RoleIcon}
+                  />
+                  <Button
+                    type="button"
+                    marginTop={0}
+
+                    onClick={() => this.rotateRole(role.id)}
+                  >
+                    <FlexContainer>
+                      <span>Rotate</span>
+                    </FlexContainer>
+                  </Button>
+                </FlexContainer>
                 <ListItem
                   itemId={employee.id}
-                  mainText={employee.firstName}
+                  mainText={`${employee.firstName} ${employee.lastName}`}
                   secondaryText={employee.nationality}
                   tertiaryText={employee.department}
                   avatarIcon={EmployeeIcon}

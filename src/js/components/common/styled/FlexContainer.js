@@ -7,6 +7,7 @@ const FlexContainer = styled.div`
     justify-content: ${props.justifyContent};
     flex-direction: ${props.flexDirection};
     align-self: ${props.alignSelf};
+    align-items: ${props.alignItems};
   `}
 `;
 

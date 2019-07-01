@@ -1,5 +1,5 @@
 /* eslint-disable no-confusing-arrow */
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FONT_WEIGHTS } from '../../enums';
 import Touchable from './Touchable';
 
@@ -18,6 +18,10 @@ const Button = styled(Touchable)`
   border-radius: 4px;
   height: 36px;
   margin-top: 8px;
+
+  ${props => css`
+    margin-top: ${props.marginTop};
+  `}
 
   & > span {
     margin: 0 16px;
