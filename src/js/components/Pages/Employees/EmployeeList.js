@@ -7,6 +7,7 @@ import ListStyled from '../../common/styled/ListStyled';
 
 import avatarIcon from '../../../../assets/avatar.png';
 import Loading from '../../common/Loading';
+import CardContainer from '../../common/styled/CardContainer';
 
 const EmployeeList = (props) => {
   const {
@@ -21,15 +22,17 @@ const EmployeeList = (props) => {
         employeesLoading
           ? <Loading />
           : employees.map(employee => (
-            <ListItem
-              key={employee.id}
-              itemId={employee.id}
-              mainText={`${employee.firstName} ${employee.lastName}`}
-              secondaryText={employee.nationality}
-              tertiaryText={employee.department}
-              secondaryActionHandler={() => deleteEmployee(employee.id)}
-              avatarIcon={avatarIcon}
-            />
+            <CardContainer>
+              <ListItem
+                key={employee.id}
+                itemId={employee.id}
+                mainText={`${employee.firstName} ${employee.lastName}`}
+                secondaryText={employee.nationality}
+                tertiaryText={employee.department}
+                secondaryActionHandler={() => deleteEmployee(employee.id)}
+                avatarIcon={avatarIcon}
+              />
+            </CardContainer>
           ))
       }
     </ListStyled>

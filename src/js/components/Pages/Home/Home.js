@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import _ from 'lodash';
 
 import { getRoles, rotateRole } from '../../../../api';
@@ -9,6 +10,7 @@ import EmployeeIcon from '../../../../assets/avatar.png';
 import FlexContainer from '../../common/styled/FlexContainer';
 import { generateId } from '../../../helpers';
 import Button from '../../common/styled/Button';
+import CardContainer from '../../common/styled/CardContainer';
 
 class Home extends React.Component {
   state = {
@@ -30,59 +32,74 @@ class Home extends React.Component {
 
   rotateRole = async (roleId) => {
     await rotateRole(roleId);
-    this.setState({ rolesLoading: true });
     await this.fetchRolesHandler();
   }
 
   render() {
     const { roles, rolesLoading } = this.state;
     return (
-      <div>
+      <PageContainer>
         <h2>Team Roles</h2>
-        {rolesLoading
-          ? <Loading />
-          : roles.map((role) => {
-            const { employee } = role;
-            return (
-              <FlexContainer
-                justifyContent="space-between"
-                alignItems="center"
-                key={generateId()}
-              >
-                <FlexContainer justifyContent="space-between">
-                  <ListItem
-                    itemId={role.id}
-                    mainText={role.title}
-                    secondaryText={role.description}
-                    tertiaryText={`${role.durationInWeeks} weeks`}
-                    secondaryActionHandler={null}
-                    avatarIcon={RoleIcon}
-                  />
-                  <Button
-                    type="button"
-                    marginTop={0}
-
-                    onClick={() => this.rotateRole(role.id)}
-                  >
-                    <FlexContainer>
-                      <span>Rotate</span>
-                    </FlexContainer>
-                  </Button>
-                </FlexContainer>
-                <ListItem
-                  itemId={employee.id}
-                  mainText={`${employee.firstName} ${employee.lastName}`}
-                  secondaryText={employee.nationality}
-                  tertiaryText={employee.department}
-                  avatarIcon={EmployeeIcon}
-                />
-              </FlexContainer>
-            );
-          })
+        <div>
+          {rolesLoading
+            ? <Loading />
+            : roles.map((role) => {
+              const { employee } = role;
+              return (
+                <CardContainer
+                  justifyContent="space-between"
+                  alignItems="center"
+                  key={generateId()}
+                >
+                  <FlexContainer>
+                    <ListItem
+                      itemId={role.id}
+                      mainText={role.title}
+                      secondaryText={role.description}
+                      tertiaryText={`${role.durationInWeeks} weeks`}
+                      secondaryActionHandler={null}
+                      avatarIcon={RoleIcon}
+                    />
+                    <ListItem
+                      itemId={employee.id}
+                      mainText={`${employee.firstName} ${employee.lastName}`}
+                      secondaryText={employee.nationality}
+                      tertiaryText={employee.department}
+                      secondaryActionHandler={null}
+                      avatarIcon={EmployeeIcon}
+                    />
+                  </FlexContainer>
+                  <ButtonContainer>
+                    <Button
+                      type="button"
+                      marginTop={0}
+                      onClick={() => this.rotateRole(role.id)}
+                    >
+                      <FlexContainer>
+                        <span>Rotate</span>
+                      </FlexContainer>
+                    </Button>
+                  </ButtonContainer>
+                </CardContainer>
+              );
+            })
         }
-      </div>
+        </div>
+      </PageContainer>
     );
   }
 }
+
+const ButtonContainer = styled(FlexContainer)`
+  padding: 10px;
+`;
+
+
+const PageContainer = styled.div`
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default Home;

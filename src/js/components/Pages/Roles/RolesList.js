@@ -7,6 +7,7 @@ import { roleType } from './types';
 
 import avatarIcon from '../../../../assets/teamwork.png';
 import Loading from '../../common/Loading';
+import CardContainer from '../../common/styled/CardContainer';
 
 class RoleList extends React.Component {
   async componentDidMount() {
@@ -29,15 +30,17 @@ class RoleList extends React.Component {
             : roles.map((role) => {
               const duration = `${role.durationInWeeks} weeks`;
               return (
-                <ListItem
-                  key={role.id}
-                  itemId={role.id}
-                  mainText={role.title}
-                  secondaryText={role.description}
-                  tertiaryText={duration}
-                  secondaryActionHandler={() => deleteRole(role.id)}
-                  avatarIcon={avatarIcon}
-                />
+                <CardContainer>
+                  <ListItem
+                    key={role.id}
+                    itemId={role.id}
+                    mainText={role.title}
+                    secondaryText={role.description}
+                    tertiaryText={duration}
+                    secondaryActionHandler={() => deleteRole(role.id)}
+                    avatarIcon={avatarIcon}
+                  />
+                </CardContainer>
               );
             })
         }

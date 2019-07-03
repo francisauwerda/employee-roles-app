@@ -97,9 +97,7 @@ const SecondaryAction = styled(FlexContainer)`
 `;
 
 const ListItemStyled = styled.li`
-  height: 72px;
-  margin: 16px;
-  transition: background-color .5s;
+  max-width: 300px;
 
   display: flex;
   justify-content: space-between;
