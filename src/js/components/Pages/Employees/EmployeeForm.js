@@ -5,6 +5,7 @@ import Input from '../../common/TextFields/Input';
 import Button from '../../common/styled/Button';
 import { createEmployee } from '../../../../api';
 import FormStyled from '../../common/styled/FormStyled';
+import CardContainer from '../../common/styled/CardContainer';
 
 class EmployeeForm extends React.Component {
   constructor(props) {
@@ -88,39 +89,41 @@ class EmployeeForm extends React.Component {
     } = this;
 
     return (
-      <FormStyled>
-        <Input
-          name="firstName"
-          label="First Name"
-          value={firstName}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          name="lastName"
-          label="Last Name"
-          value={lastName}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          name="department"
-          label="Department"
-          value={department}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          name="nationality"
-          label="Nationality"
-          value={nationality}
-          onChange={this.handleInputChange}
-        />
-        <Button
-          type="submit"
-          onClick={this.handleSubmit}
-          submitting={submitting}
-        >
-          <span>Submit</span>
-        </Button>
-      </FormStyled>
+      <CardContainer>
+        <FormStyled>
+          <Input
+            name="firstName"
+            label="First Name"
+            value={firstName}
+            onChange={this.handleInputChange}
+          />
+          <Input
+            name="lastName"
+            label="Last Name"
+            value={lastName}
+            onChange={this.handleInputChange}
+          />
+          <Input
+            name="department"
+            label="Department"
+            value={department}
+            onChange={this.handleInputChange}
+          />
+          <Input
+            name="nationality"
+            label="Nationality"
+            value={nationality}
+            onChange={this.handleInputChange}
+          />
+          <Button
+            type="submit"
+            onClick={this.handleSubmit}
+            submitting={submitting}
+          >
+            <span>Submit</span>
+          </Button>
+        </FormStyled>
+      </CardContainer>
     );
   }
 }

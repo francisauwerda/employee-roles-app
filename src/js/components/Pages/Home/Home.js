@@ -51,7 +51,7 @@ class Home extends React.Component {
                   alignItems="center"
                   key={generateId()}
                 >
-                  <FlexContainer>
+                  <GridContainer>
                     <ListItem
                       itemId={role.id}
                       mainText={role.title}
@@ -68,7 +68,7 @@ class Home extends React.Component {
                       secondaryActionHandler={null}
                       avatarIcon={EmployeeIcon}
                     />
-                  </FlexContainer>
+                  </GridContainer>
                   <ButtonContainer>
                     <Button
                       type="button"
@@ -89,6 +89,17 @@ class Home extends React.Component {
     );
   }
 }
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 300px 300px;
+
+  @media only screen and (max-width: 720px) {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-row-gap: 10px;
+  }
+`;
 
 const ButtonContainer = styled(FlexContainer)`
   padding: 10px;

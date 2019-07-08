@@ -7,6 +7,7 @@ import Input from '../../common/TextFields/Input';
 import { createRole } from '../../../../api';
 import EmployeeOptions from './EmployeeOptions';
 import TextArea from '../../common/TextFields/TextArea';
+import CardContainer from '../../common/styled/CardContainer';
 
 const INITIAL_STATE = {
   formData: {
@@ -113,39 +114,41 @@ class RoleForm extends React.Component {
     } = this.state;
 
     return (
-      <FormStyled>
-        <Input
-          name="title"
-          label="Title"
-          value={title}
-          onChange={this.handleInputChange}
-        />
-        <TextArea
-          name="description"
-          label="Description"
-          value={description}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          name="durationInWeeks"
-          label="How many weeks?"
-          type="number"
-          min="5"
-          value={durationInWeeks}
-          onChange={this.handleInputChange}
-        />
-        <EmployeeOptions
-          handleEmployeeSelected={this.handleEmployeeSelected}
-          activeEmployee={employeeId}
-        />
-        <Button
-          type="submit"
-          submitting={submitting}
-          onClick={this.handleSubmit}
-        >
-          <span>Submit</span>
-        </Button>
-      </FormStyled>
+      <CardContainer>
+        <FormStyled>
+          <Input
+            name="title"
+            label="Title"
+            value={title}
+            onChange={this.handleInputChange}
+          />
+          <TextArea
+            name="description"
+            label="Description"
+            value={description}
+            onChange={this.handleInputChange}
+          />
+          <Input
+            name="durationInWeeks"
+            label="How many weeks?"
+            type="number"
+            min="5"
+            value={durationInWeeks}
+            onChange={this.handleInputChange}
+          />
+          <EmployeeOptions
+            handleEmployeeSelected={this.handleEmployeeSelected}
+            activeEmployee={employeeId}
+          />
+          <Button
+            type="submit"
+            submitting={submitting}
+            onClick={this.handleSubmit}
+          >
+            <span>Submit</span>
+          </Button>
+        </FormStyled>
+      </CardContainer>
     );
   }
 }
