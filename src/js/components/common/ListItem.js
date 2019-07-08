@@ -18,7 +18,6 @@ const ListItem = (props) => {
     tertiaryText,
     secondaryActionHandler,
     avatarIcon,
-    itemId,
   } = props;
 
   return (
@@ -35,7 +34,7 @@ const ListItem = (props) => {
           flexDirection="column"
         >
           <FirstLineText>
-            {`${mainText} (${itemId})`}
+            {`${mainText}`}
           </FirstLineText>
           <SecondLineText>
             {secondaryText}
@@ -64,7 +63,6 @@ ListItem.propTypes = {
   tertiaryText: PropTypes.string.isRequired,
   secondaryActionHandler: PropTypes.func,
   avatarIcon: PropTypes.string.isRequired,
-  itemId: PropTypes.number.isRequired,
 };
 
 ListItem.defaultProps = {
@@ -97,7 +95,7 @@ const SecondaryAction = styled(FlexContainer)`
 `;
 
 const ListItemStyled = styled.li`
-  max-width: 300px;
+  width: 100%;
 
   display: flex;
   justify-content: space-between;
