@@ -30,7 +30,9 @@ class RoleList extends React.Component {
             : roles.map((role) => {
               const duration = `${role.durationInWeeks} weeks`;
               return (
-                <CardContainer>
+                <CardContainer
+                  key={`${role.id}${role.title}`}
+                >
                   <ListItem
                     key={role.id}
                     itemId={role.id}

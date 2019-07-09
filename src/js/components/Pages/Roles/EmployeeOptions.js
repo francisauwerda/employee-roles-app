@@ -8,7 +8,7 @@ import Loading from '../../common/Loading';
 
 class EmployeeOptions extends React.Component {
   static propTypes = {
-    activeEmployee: PropTypes.bool.isRequired,
+    activeEmployee: PropTypes.number.isRequired,
     handleEmployeeSelected: PropTypes.func.isRequired,
   }
 

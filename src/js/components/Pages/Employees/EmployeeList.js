@@ -22,7 +22,9 @@ const EmployeeList = (props) => {
         employeesLoading
           ? <Loading />
           : employees.map(employee => (
-            <CardContainer>
+            <CardContainer
+              key={`${employee.id}${employee.firstName}`}
+            >
               <ListItem
                 key={employee.id}
                 itemId={employee.id}
