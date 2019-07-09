@@ -1,37 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Employees from './Pages/Employees/Employees';
 import Roles from './Pages/Roles/Roles';
 import Home from './Pages/Home/Home';
+import NavBar from './common/NavBar';
+
+const routes = [{
+  path: '/',
+  name: 'Home',
+}, {
+  path: '/employees/',
+  name: 'Employees',
+}, {
+  path: '/roles/',
+  name: 'Roles',
+}];
 
 const AppRouter = () => (
   <Router>
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/employees/">Employees</Link>
-          </li>
-          <li>
-            <Link to="/roles/">Roles</Link>
-          </li>
-        </ul>
-      </nav>
+      <NavBar
+        routes={routes}
+      />
       <Route path="/" exact component={Home} />
       <Route
         path="/employees/"
-        render={() => (
-          <Employees />
-        )}
+        component={Employees}
       />
       <Route
         path="/roles/"
-        render={() => (
-          <Roles />
-        )}
+        component={Roles}
       />
     </div>
   </Router>
