@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Employees from './Pages/Employees/Employees';
 import Roles from './Pages/Roles/Roles';
 import Home from './Pages/Home/Home';
-import NavBar from './common/NavBar';
+import Header from './common/Header';
 
 const routes = [{
   path: '/',
@@ -19,7 +19,7 @@ const routes = [{
 const AppRouter = () => (
   <Router>
     <div>
-      <NavBar
+      <Header
         routes={routes}
       />
       <Route path="/" exact component={Home} />
