@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { primary } from '../../styles';
 
 const Wrapper = styled.header`
   display: flex;
@@ -10,6 +11,7 @@ const Wrapper = styled.header`
   background-color: white;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin-bottom: 40px;
+  padding-bottom: 5px;
 `;
 
 const HeaderContainer = styled.div`
@@ -22,6 +24,10 @@ const HeaderContainer = styled.div`
   padding: 0 10px;
 `;
 
+const StyledNav = styled.nav`
+  height: 100%;
+`;
+
 const NavList = styled.ul`
   /* Reset list styles */
   list-style-type: none;
@@ -29,14 +35,35 @@ const NavList = styled.ul`
   padding: 0;
 
   display: flex;
+  height: 100%;
 `;
 
 const NavItem = styled.li`
   padding: 0 5px;
+  height: 100%;
+  display: flex;
 `;
 
-const NavLink = styled(Link)`
+const activeClassName = 'active';
+const StyledNavLink = styled(NavLink).attrs({
+  activeClassName,
+})`
   text-decoration: none;
+  /* background-color: brown; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  :hover {
+    /* background-color: yellow; */
+    border-bottom: 5px solid red;
+  }
+
+  &.${activeClassName} { 
+    /* color: blue; */
+    border-bottom: 5px solid ${primary};
+  }
 `;
 
 const Header = (props) => {
@@ -45,15 +72,20 @@ const Header = (props) => {
     <Wrapper>
       <HeaderContainer>
         <a href="/">Employee Roles</a>
-        <nav>
+        <StyledNav>
           <NavList>
             {routes.map(route => (
               <NavItem key={route.path}>
-                <NavLink to={route.path}>{route.name}</NavLink>
+                <StyledNavLink
+                  to={route.path}
+                  exact
+                >
+                  {route.name}
+                </StyledNavLink>
               </NavItem>
             ))}
           </NavList>
-        </nav>
+        </StyledNav>
       </HeaderContainer>
     </Wrapper>
   );
