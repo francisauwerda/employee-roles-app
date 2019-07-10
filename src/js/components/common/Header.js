@@ -39,7 +39,7 @@ const NavList = styled.ul`
 `;
 
 const NavItem = styled.li`
-  padding: 0 5px;
+  padding: 0 15px;
   height: 100%;
   display: flex;
 `;
@@ -49,19 +49,20 @@ const StyledNavLink = styled(NavLink).attrs({
   activeClassName,
 })`
   text-decoration: none;
-  /* background-color: brown; */
+  color: #5f6368;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   :hover {
-    /* background-color: yellow; */
     border-bottom: 5px solid red;
   }
 
   &.${activeClassName} { 
-    /* color: blue; */
     border-bottom: 5px solid ${primary};
   }
 `;
