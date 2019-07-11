@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 
 import { FONT_WEIGHTS } from '../enums';
 import FlexContainer from './styled/FlexContainer';
-import ActionIcon from './styled/ActionIcon';
 import AvatarContainer from './styled/AvatarContainer';
 import AvatarStyled from './styled/AvatarStyled';
-
-// Icons
-import deleteIcon from '../../../assets/baseline_delete_black_24dp.png';
+import Button from './styled/Button';
 
 const ListItem = (props) => {
   const {
@@ -46,11 +43,12 @@ const ListItem = (props) => {
       </FlexContainer>
       {secondaryActionHandler && (
         <SecondaryAction>
-          <ActionIcon
-            backgroundImage={deleteIcon}
-            onClick={secondaryActionHandler}
+          <Button
             submitting={false}
-          />
+            onClick={secondaryActionHandler}
+          >
+            Delete
+          </Button>
         </SecondaryAction>
       )}
     </ListItemStyled>
@@ -89,9 +87,6 @@ const SecondLineText = styled(Text)`
 
 const SecondaryAction = styled(FlexContainer)`
   cursor: pointer;
-  width: 24px;
-  height: 24px;
-  padding-left: 16px;
 `;
 
 const ListItemStyled = styled.li`
