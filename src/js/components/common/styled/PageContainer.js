@@ -4,6 +4,7 @@ const PageContainer = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: auto;
+  margin-top: 102px;
 
   @media only screen and (max-width: 600px) {
     grid-template-columns: auto;

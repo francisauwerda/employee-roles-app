@@ -111,6 +111,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 102px;
 `;
 
 export default Home;

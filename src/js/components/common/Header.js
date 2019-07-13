@@ -12,6 +12,10 @@ const Wrapper = styled.header`
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin-bottom: 40px;
   padding-bottom: 5px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
 `;
 
 const HeaderContainer = styled.div`
@@ -57,13 +61,30 @@ const StyledNavLink = styled(NavLink).attrs({
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: border-bottom 0.2s;
+  transition-timing-function: ease;
 
   :hover {
-    border-bottom: 5px solid red;
+    opacity: 0.5;
   }
 
   &.${activeClassName} { 
     border-bottom: 5px solid ${primary};
+
+    :hover {
+      opacity: 1;
+    }
+  }
+`;
+
+const HeaderLogo = styled.a`
+  text-decoration: none;
+  color: #5f6368;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: capitalize;
+  :hover {
+    opacity: 0.5;
   }
 `;
 
@@ -72,7 +93,7 @@ const Header = (props) => {
   return (
     <Wrapper>
       <HeaderContainer>
-        <a href="/">Employee Roles</a>
+        <HeaderLogo href="/">Team Roles</HeaderLogo>
         <StyledNav>
           <NavList>
             {routes.map(route => (

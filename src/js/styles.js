@@ -1,3 +1,3 @@
-export const primary = '#0d47a1';
-export const primaryLight = '#5472d3';
-export const primaryDark = '#002171';
+export const primary = '#6200ee';
+export const primaryLight = '#9e47ff';
+export const primaryDark = '#0400ba';
